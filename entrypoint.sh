@@ -4,7 +4,7 @@
 echo "PermitRootLogin No" >> /etc/ssh/sshd_config
 
 # add user
-adduser --home $TARGET_FOLDER  $SSH_USER
+useradd  $SSH_USER
 echo $SSH_USER:$SSH_PASSWORD | chpasswd
 
 # set folder permission
