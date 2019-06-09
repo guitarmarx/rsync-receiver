@@ -20,7 +20,7 @@ ADD templates /srv/templates
 ADD entrypoint.sh /srv
 
 RUN chmod +x /srv/entrypoint.sh \
-	cp /srv/templates/crontab /etc/crontab
+	&& cp /srv/templates/crontab /etc/crontab
 
 VOLUME $TARGET_FOLDER
 ENTRYPOINT ["/srv/entrypoint.sh"]
