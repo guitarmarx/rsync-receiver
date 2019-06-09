@@ -10,10 +10,6 @@ mkdir -p $TARGET_FOLDER
 chown -R $SSH_USER $TARGET_FOLDER
 
 # start cron and  ssh
-service cron start
 service ssh start
-
-
-# monitor check log
-tail -f  /var/log/check.log
+cron -f
 
