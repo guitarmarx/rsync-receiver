@@ -1,4 +1,4 @@
-//Utility Steps Plugin needed
+//Jenkins Utility Steps Plugin needed
 
 def properties = null
 def imageName = null
@@ -8,7 +8,6 @@ pipeline {
     agent {label 'build'}
     environment{
         dockerRegistry='registry.meteorit-leipzig.de'
-        kopanoSerialKey = credentials('kopano-serial-key')
     }
 
     stages {
@@ -17,7 +16,7 @@ pipeline {
                 script {
                     properties = readProperties file:'docker.info';
                     imageName = dockerRegistry + '/' + properties.name + ':' + properties.version
-                    sh "docker build --no-cache --build-arg  KOPANO_SERIAL=$kopanoSerialKey  -t $imageName ."
+                    sh "docker build --no-cache  -t $imageName ."
                 }
             }
         }
