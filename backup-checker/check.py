@@ -2,9 +2,7 @@ import logging
 import os
 import requests
 import sys
-
-
-
+import time
 
 def initLogging(logFormat, logLevel,  logFile):
     logger = logging.getLogger()
@@ -45,18 +43,19 @@ webhookURL = os.environ['SLACK_WEBHOOK_URL']
 
 # check if report file is available
 if not os.path.isfile(reportFile):
-    sendMessage('Backup failed. Reportfile not found.')
-    logger.error('Backup failed. Reportfile not found.')
+    sendMessage('Backup failed. Reportfile not transferred...')
+    logger.error('Backup failed. Reportfile not transferred...')
     sys.exit(1)
 
 # check statuscode
 with open(reportFile) as f:
     first_line = f.readline()
     if not "code=0" in first_line:
-        sendMessage('Backup failed.')
-        logger.error('Backup failed.')
+        sendMessage('Backup failed. Backup failed in the process. ' + first_line +' See logfile for more Information...')
+        logger.error('Backup failed. Backup failed in the process. ' + first_line +' See logfile for more Information...')
         sys.exit(1)
     else:
         #move file to archiv
-        os.rename(reportFile, archivPath + reportFile)
+        timestr = time.strftime("%Y-%m-%d_%H-%M")
+        os.rename(reportFile, archivPath + timestr + "-report.txt")
         sys.exit(0)
