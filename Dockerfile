@@ -8,10 +8,11 @@ ENV SSH_USER="user" \
 	TARGET_FOLDER=/srv/backup \
 	SLACK_WEBHOOK_URL="https://hooks.slack.com/services/<TOKEN>"
 
-# gerneral packages
+#install packages
 RUN apt update \
 	&& apt -y dist-upgrade \
 	&& apt install -y --no-install-recommends openssh-server rsync cron \
+	&& pip install requests \
 	&& rm -rf  /var/cache/apt  /var/lib/apt/lists/*
 
 

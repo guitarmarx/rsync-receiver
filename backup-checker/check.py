@@ -23,7 +23,7 @@ def initLogging(logFormat, logLevel,  logFile):
     return logger
 
 
-def sendMessage(message, webhookURL):
+def sendMessage(message):
     message = '{"text" : "' + message + '"}'
     requests.post(webhookURL, data=message)
 
@@ -34,13 +34,13 @@ logFormat = '%(asctime)s - %(levelname)s - %(message)s'
 logLevel = 'INFO'
 
 # Init Logger
-logger = helper.initLogging(logFormat, logLevel, logFile)
+logger = initLogging(logFormat, logLevel, logFile)
 
 
 backupPath = os.environ['TARGET_FOLDER']
-archivPath = os.path.join(backupPath, 'archiv')
+archivPath = os.path.join(backupPath, 'archiv/')
 reportFile = os.path.join(backupPath, 'report.txt')
-slackWebhookURL = os.environ['SLACK_WEBHOOK_URL']
+webhookURL = os.environ['SLACK_WEBHOOK_URL']
 
 
 # check if report file is available
@@ -58,5 +58,5 @@ with open(reportFile) as f:
         sys.exit(1)
     else:
         #move file to archiv
-        os.rename(reportFile, archivPath)
+        os.rename(reportFile, archivPath + reportFile)
         sys.exit(0)

@@ -12,15 +12,16 @@ BACKUP_DIR=/srv/backup
 TARGET_PATH=/srv/backup
 LOGFILE=/tmp/backup.log
 
-
-
 #start rsync backup
-rsync -a -E --human-readable --stats -e "ssh -p ${TARGET_PORT}" $BACKUP_DIR ${SSH_USER}@${TARGET_SERVER}:${TARGET_PATH} >$LOGFILE
-echo $(date) >> $LOGFILE
+echo "start backup process..."
+sshpass -p $SSH_PASSWORD rsync -a -E --human-readable --stats -e "ssh  -o StrictHostKeyChecking=no -p ${TARGET_PORT}" $BACKUP_DIR ${SSH_USER}@${TARGET_SERVER}:${TARGET_PATH} >$LOGFILE
 
 #write logfile with status code
 returncode=$?
+echo $(date) >> $LOGFILE
 echo code=$returncode | cat - $LOGFILE  > temp && mv temp $LOGFILE
 
 #send logfile to server
-rsync -a  $LOGFILE ${TARGET_PATH}/report.txt
+echo "send logfile to server..."
+sshpass -p $SSH_PASSWORD rsync -a -e  "ssh -o StrictHostKeyChecking=no -p ${TARGET_PORT}" $LOGFILE ${SSH_USER}@${TARGET_SERVER}:${TARGET_PATH}/report.txt
+
