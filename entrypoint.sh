@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # config ssh
 echo "PermitRootLogin No" >> /etc/ssh/sshd_config
 
