@@ -6,7 +6,7 @@ EXPOSE 22
 ENV SSH_USER="user" \
 	SSH_PASSWORD="password" \
 	TARGET_FOLDER=/srv/backup \
-	SLACK_WEBHOOK_URL="https://hooks.slack.com/services/<TOKEN>"
+	SLACK_WEBHOOK_URL="URL"
 
 #install packages
 RUN apt update \
