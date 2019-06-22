@@ -27,7 +27,7 @@ def sendMessage(message):
 
 
 # init logging
-logFile = '/var/log/check.log'
+logFile = '/srv/check.log'
 logFormat = '%(asctime)s - %(levelname)s - %(message)s'
 logLevel = 'INFO'
 

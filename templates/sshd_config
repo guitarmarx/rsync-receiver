@@ -1,0 +1,16 @@
+PubkeyAuthentication yes
+ChallengeResponseAuthentication no
+UsePAM yes
+# no default banner path
+#Banner none
+# Allow client to pass locale environment variables
+AcceptEnv LANG LC_*
+
+# override default of no subsystems
+Subsystem       sftp    /usr/lib/openssh/sftp-server
+
+
+PasswordAuthentication no
+PermitRootLogin Yes
+Port 50022
+AuthenticationMethods publickey
