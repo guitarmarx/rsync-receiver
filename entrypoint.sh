@@ -10,11 +10,10 @@ useradd  $SSH_USER
 echo $SSH_USER:$SSH_PASSWORD | chpasswd
 
 #create home folder
-mkdir /home/$SSH_USER && chown -R $SSH_USER $SSH_USER
+mkdir -p /home/$SSH_USER/.ssh/ && chown -R $SSH_USER /home/$SSH_USER
 
 # add public keys to authorized keys
-rm  -r /home/$SSH_USER/.ssh/ | true
-mkdir /home/$SSH_USER/.ssh/
+rm -r  /home/$SSH_USER/.ssh/* &> /dev/null
 
 keys=(/srv/keys/*)
 if [ ${#files[@]} -gt 0 ]; then
