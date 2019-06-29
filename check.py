@@ -38,7 +38,7 @@ logger = initLogging(logFormat, logLevel, logFile)
 backupPath = '/srv/backup'
 archivPath = os.path.join(backupPath, 'archiv/')
 reportFile = os.path.join(backupPath, 'report.txt')
-webhookURL = os.environ['SLACK_WEBHOOK_URL']
+webhookURL = 'URL'
 
 
 # check if report file is available

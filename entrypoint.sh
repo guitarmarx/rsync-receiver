@@ -28,6 +28,9 @@ mkdir -p $TARGET_FOLDER
 mkdir -p $TARGET_FOLDER/archiv
 chown -R $SSH_USER $TARGET_FOLDER
 
+#set webhook url
+sed -i "s|webhookURL =.*|webhookURL = '$SLACK_WEBHOOK_URL'|g" /srv/script/check.py
+
 # start cron and  ssh
 service ssh start
 cron -f
