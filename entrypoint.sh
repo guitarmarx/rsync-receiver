@@ -13,9 +13,15 @@ echo $SSH_USER:$SSH_PASSWORD | chpasswd
 mkdir /home/$SSH_USER && chown -R $SSH_USER $SSH_USER
 
 # add public keys to authorized keys
-rm  -r /home/$SSH_USER/.ssh/
+rm  -r /home/$SSH_USER/.ssh/ | true
 mkdir /home/$SSH_USER/.ssh/
-cat /srv/keys/* >> /home/$SSH_USER/.ssh/authorized_keys
+
+keys=(/srv/keys/*)
+if [ ${#files[@]} -gt 0 ]; then
+    cat /srv/keys/* >> /home/$SSH_USER/.ssh/authorized_keys
+else
+    echo "key not found in /srv/keys/"
+fi
 
 # set folder permission
 mkdir -p $TARGET_FOLDER
