@@ -10,7 +10,7 @@ BACKUP_DIR=/srv/backup
 
 ######### DO NOT EDIT AFTER THIS LINE #############
 # Parameter
-SSH_OPTS="-i /home/dev/.ssh/andy-rsync-key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${TARGET_PORT}"
+SSH_OPTS="-i $SSH_KEY -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${TARGET_PORT}"
 TARGET_PATH=/srv/backup
 DATE=$(date '+%Y-%m-%d_%H-%M')
 ARCHIV_PATH="/var/log/rsync-backup"

@@ -37,7 +37,7 @@ logger = initLogging(logFormat, logLevel, logFile)
 
 backupPath = '/srv/backup'
 archivPath = os.path.join(backupPath, 'archiv/')
-reportFile = os.path.join(backupPath, 'report.txt')
+reportFile = os.path.join(backupPath, 'report.log')
 webhookURL = 'URL'
 
 
