@@ -5,7 +5,6 @@ EXPOSE 22
 
 ENV SSH_USER="rsync" \
 	SSH_PASSWORD="password" \
-	TARGET_FOLDER=/srv/backup \
 	SLACK_WEBHOOK_URL="URL"
 
 #install packages
@@ -16,14 +15,14 @@ RUN apt update \
 	&& rm -rf  /var/cache/apt  /var/lib/apt/lists/*
 
 
-ADD backup-checker /srv/backup-checker
-ADD templates /srv/templates
-ADD entrypoint.sh /srv
+ADD templates /srv/script/templates
+ADD check.py /srv/script
+ADD entrypoint.sh /srv/script
 
-RUN chmod +x /srv/entrypoint.sh \
-	&& cp /srv/templates/crontab /etc/crontab \
-	&& cp /srv/templates/sshd_config /etc/ssh/
+RUN chmod +x /srv/script/entrypoint.sh \
+	&& cp /srv/script/templates/crontab /etc/crontab \
+	&& cp /srv/script/templates/sshd_config /etc/ssh/
 
-VOLUME $TARGET_FOLDER
+VOLUME /srv/backup
 VOLUME /srv/keys
-ENTRYPOINT ["/srv/entrypoint.sh"]
+ENTRYPOINT ["/srv/script/entrypoint.sh"]

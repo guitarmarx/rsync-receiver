@@ -27,7 +27,7 @@ def sendMessage(message):
 
 
 # init logging
-logFile = '/srv/check.log'
+logFile = '/srv/log/check.log'
 logFormat = '%(asctime)s - %(levelname)s - %(message)s'
 logLevel = 'INFO'
 
@@ -35,7 +35,7 @@ logLevel = 'INFO'
 logger = initLogging(logFormat, logLevel, logFile)
 
 
-backupPath = os.environ['TARGET_FOLDER']
+backupPath = '/srv/backup'
 archivPath = os.path.join(backupPath, 'archiv/')
 reportFile = os.path.join(backupPath, 'report.txt')
 webhookURL = os.environ['SLACK_WEBHOOK_URL']
