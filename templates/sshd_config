@@ -12,5 +12,5 @@ Subsystem       sftp    /usr/lib/openssh/sftp-server
 
 PasswordAuthentication no
 PermitRootLogin Yes
-Port 50022
+Port 22
 AuthenticationMethods publickey
