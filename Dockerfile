@@ -4,6 +4,7 @@ LABEL maintainer="meteorIT GbR Marcus Kastner"
 EXPOSE 22
 
 ENV SSH_USER="rsync" \
+	SSH_KEY='' \
 	SLACK_WEBHOOK_URL="URL"
 
 #install packages
@@ -23,5 +24,4 @@ RUN chmod +x /srv/script/entrypoint.sh \
 	&& cp /srv/script/templates/sshd_config /etc/ssh/
 
 VOLUME /srv/backup
-VOLUME /srv/keys
 ENTRYPOINT ["/srv/script/entrypoint.sh"]

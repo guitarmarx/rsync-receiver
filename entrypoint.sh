@@ -15,11 +15,10 @@ mkdir /srv/log
 # add public keys to authorized keys
 rm -r  /home/$SSH_USER/.ssh/* &> /dev/null
 
-keys=(/srv/keys/*)
-if [ ${#keys[@]} -gt 0 ]; then
-    cat /srv/keys/* >> /home/$SSH_USER/.ssh/authorized_keys
+if [ -z ${SSH_KEY+x} ]; then
+    echo "you hav to specify a key with the parameter SSH_KEY.";
 else
-    echo "key not found in /srv/keys/"
+    echo $SSH_KEY >> /home/$SSH_USER/.ssh/authorized_keys
 fi
 
 # set folder permission
