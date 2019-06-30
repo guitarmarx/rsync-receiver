@@ -4,7 +4,6 @@ LABEL maintainer="meteorIT GbR Marcus Kastner"
 EXPOSE 22
 
 ENV SSH_USER="rsync" \
-	SSH_PASSWORD="password" \
 	SLACK_WEBHOOK_URL="URL"
 
 #install packages

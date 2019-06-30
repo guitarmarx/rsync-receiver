@@ -7,7 +7,6 @@ echo "PermitRootLogin No" >> /etc/ssh/sshd_config
 
 # add user
 useradd  $SSH_USER
-echo $SSH_USER:$SSH_PASSWORD | chpasswd
 
 #create home folder
 mkdir -p /home/$SSH_USER/.ssh/ && chown -R $SSH_USER /home/$SSH_USER
