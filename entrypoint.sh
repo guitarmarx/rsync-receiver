@@ -22,6 +22,7 @@ else
 fi
 
 # set folder permission
+TARGET_FOLDER=/srv/backup
 mkdir -p $TARGET_FOLDER
 mkdir -p $TARGET_FOLDER/archiv
 chown -R $SSH_USER $TARGET_FOLDER
